@@ -27,8 +27,12 @@
 				$('#simpleraw').live('vclick', function() {
 					$('#my_toast').toast('show')
 				});
+				$('#cancel').live('vclick', function() {
+				  $('#my_toast').toast('cancel')
+				});
 			</script>
 			<a href="#" id="simpleraw" data-role="button">Show Toast Notification</a>
+			<a href="#" id="cancel" data-role="button">Cancel Toast</a>
 			<div id="my_toast" data-role="toast">whats up</div>
 		</div>
 		

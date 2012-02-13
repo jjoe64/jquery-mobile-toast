@@ -19,11 +19,17 @@ $.widget( "mobile.toast", $.mobile.widget, {
 		var $el = this.element
 		$el.addClass('ui-toast')
 		$el.hide()
+		self = this
+		$('body').bind('showToast', function() {
+		  self.cancel()
+		})
 	},
 	/**
 	 * fadeIn the toast notification and automatically fades out after the given time
 	 */
 	show: function() {
+	  $('body').trigger('showToast') // cancels all active toasts
+	  
 		var $el = this.element
 		
 		var bw = $('body').width()
@@ -43,6 +49,13 @@ $.widget( "mobile.toast", $.mobile.widget, {
 		else jQuery.error('mobile.toast: options.duration has to be short, long or a integer value')
 		
 		$el.fadeIn().delay(millis).fadeOut('slow')
+	},
+	/**
+	 * cancel and hides the toast
+	 */
+	cancel: function() {
+	  var $el = this.element;
+    $el.stop(true).hide()
 	}
 });
   
